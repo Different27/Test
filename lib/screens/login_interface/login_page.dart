@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_project/screens/login_interface/signup.dart';
 import '../../widgets/nav_bar.dart';
 import 'custom_clipper.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,6 +14,32 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  late String uid;
+
+  Future<bool> loginState(String email, String password) async {
+    try {
+      QuerySnapshot querySnapshot = await firestore
+          .collection('players')
+          .where('email', isEqualTo: email)
+          .where('password', isEqualTo: password)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        // Người dùng được tìm thấy
+        uid = querySnapshot.docs.first.id;
+        print(uid);
+        return true;
+      } else {
+        // Không tìm thấy người dùng
+        return false;
+      }
+    } catch (e) {
+      print("Lỗi khi tìm người dùng: $e");
+      return false;
+    }
+  }
 
   @override
   void initState() {
@@ -52,10 +79,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
-          colors: [
-            Colors.green,
-            Color.fromARGB(218, 239, 92, 135)
-          ],
+          colors: [Colors.green, Color.fromARGB(218, 239, 92, 135)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         )),
@@ -85,26 +109,49 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUpScreen()));
                     },
                     child: const Text("Sign Up"),
                   ),
-                  SizedBox(width: 10,),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       //Login Button Pressed
                       String email = emailController.text.trim();
                       String password = passwordController.text.trim();
                       print("Email : $email Password : $password");
-                      if(passwordController.text.trim().isNotEmpty && passwordController.text.trim().isNotEmpty){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>TestBottomNavWithAnimatedIcons()));
-                      };
+                      if (passwordController.text.trim().isNotEmpty &&
+                          passwordController.text.trim().isNotEmpty) {
+                        bool loginResult = await loginState(email, password);
+
+                        if (loginResult) {
+                          print("Đăng nhập thành công với ID bản ghi: $uid");
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  TestBottomNavWithAnimatedIcons(uid: uid),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Email hoặc mật khẩu không đúng"),
+                            ),
+                          );
+                        }
+                      }
                     },
                     child: const Text("LOGIN"),
                   ),
                 ],
               ),
-
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () {},
@@ -138,15 +185,18 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               IconButton(
                 onPressed: () {},
-                icon: Image.asset("assets/icons/google.png", width: 60, height: 60),
+                icon: Image.asset("assets/icons/google.png",
+                    width: 60, height: 60),
               ),
               IconButton(
                 onPressed: () {},
-                icon: Image.asset("assets/icons/facebook.png", width: 60, height: 60),
+                icon: Image.asset("assets/icons/facebook.png",
+                    width: 60, height: 60),
               ),
               IconButton(
                 onPressed: () {},
-                icon: Image.asset("assets/icons/github.png", width: 60, height: 60),
+                icon: Image.asset("assets/icons/github.png",
+                    width: 60, height: 60),
               )
             ],
           ),

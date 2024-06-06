@@ -1,26 +1,5 @@
 import 'package:test_project/widgets/model/club_model.dart';
-// class ClbConstants {
-//   static List<Club> clubList = [
-//     Club(
-//       name: 'CLB Bóng Bàn Resco',
-//       owner: 'Nguyễn Văn A',
-//       location: '123 Đường ABC, Quận 1, TP.HCM',
-//       description: "A great club for ping pong enthusiasts.",
-//       members: MemberList,
-//       imageUrl: 'assets/categories/book_img.png',
-//     ),
-//     Club(
-//       name: "Ping Pong Club B",
-//       owner: "Jane Smith",
-//       location: "456 Avenue, City",
-//       description: "Join us for fun and competitive matches.",
-//       members: [],
-//       imageUrl: "assets/logo_b.jpg",
-//     ),
-//     // Thêm nhiều câu lạc bộ khác nếu cần
-//   ];
-//  }
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ClbConstants {
   static Club clubInfo = Club(
@@ -30,7 +9,8 @@ class ClbConstants {
     description: "A great club for ping pong enthusiasts.",
     members: MemberList,
     imageUrl: 'assets/categories/book_img.png',
-    foundingDate: DateTime.now(), activeYears: 2014,
+    foundingDate: DateTime.now(),
+    activeYears: 2014,
   );
 
   static List<Member> MemberList = [

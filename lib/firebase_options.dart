@@ -41,53 +41,51 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDRC8k97R0M31WXtLAvAVIxQUtyNzbgdjk',
-    appId: '1:47645757479:web:6deb7e7676cb8230b7fe02',
-    messagingSenderId: '47645757479',
-    projectId: 'iot-app-576f0',
-    authDomain: 'iot-app-576f0.firebaseapp.com',
-    databaseURL: 'https://iot-app-576f0-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'iot-app-576f0.appspot.com',
-    measurementId: 'G-CHYH1BNFZQ',
+    apiKey: 'AIzaSyCOS1niAaPK6pREkiho5gAY_GEqG1rTe-g',
+    appId: '1:1080975283421:web:943621d64b1f2272e8f734',
+    messagingSenderId: '1080975283421',
+    projectId: 'pinglog-beta',
+    authDomain: 'pinglog-beta.firebaseapp.com',
+    storageBucket: 'pinglog-beta.appspot.com',
+    measurementId: 'G-3YR5C2P3V8',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAOPvtB-BzuMIMT4Ij4ApxHjeyAyK6oRbM',
-    appId: '1:47645757479:android:114beb98ec73bea0b7fe02',
-    messagingSenderId: '47645757479',
-    projectId: 'iot-app-576f0',
-    databaseURL: 'https://iot-app-576f0-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'iot-app-576f0.appspot.com',
+    apiKey: 'AIzaSyAPbWTZGxDEBkMtGzauCd7FZ4rKrhFfzbQ',
+    appId: '1:1080975283421:android:c5801bd0fcf194d3e8f734',
+    messagingSenderId: '1080975283421',
+    projectId: 'pinglog-beta',
+    storageBucket: 'pinglog-beta.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBETcccHAYAxWdsj1h_4ydVH4tQjtk7_jA',
-    appId: '1:47645757479:ios:79bb8aa9f393e513b7fe02',
-    messagingSenderId: '47645757479',
-    projectId: 'iot-app-576f0',
-    databaseURL: 'https://iot-app-576f0-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'iot-app-576f0.appspot.com',
+    apiKey: 'AIzaSyBdHG3X7U9RoZ3LiwhEF_EO6Xsy6bNjI1Q',
+    appId: '1:1080975283421:ios:cee8fb9451a0baafe8f734',
+    messagingSenderId: '1080975283421',
+    projectId: 'pinglog-beta',
+    storageBucket: 'pinglog-beta.appspot.com',
+    iosClientId: '1080975283421-bk78mn077redtcdoka19kskvjs81fbot.apps.googleusercontent.com',
     iosBundleId: 'com.example.testProject',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBETcccHAYAxWdsj1h_4ydVH4tQjtk7_jA',
-    appId: '1:47645757479:ios:79bb8aa9f393e513b7fe02',
-    messagingSenderId: '47645757479',
-    projectId: 'iot-app-576f0',
-    databaseURL: 'https://iot-app-576f0-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'iot-app-576f0.appspot.com',
+    apiKey: 'AIzaSyBdHG3X7U9RoZ3LiwhEF_EO6Xsy6bNjI1Q',
+    appId: '1:1080975283421:ios:cee8fb9451a0baafe8f734',
+    messagingSenderId: '1080975283421',
+    projectId: 'pinglog-beta',
+    storageBucket: 'pinglog-beta.appspot.com',
+    iosClientId: '1080975283421-bk78mn077redtcdoka19kskvjs81fbot.apps.googleusercontent.com',
     iosBundleId: 'com.example.testProject',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDRC8k97R0M31WXtLAvAVIxQUtyNzbgdjk',
-    appId: '1:47645757479:web:5957893f3ba6d8a1b7fe02',
-    messagingSenderId: '47645757479',
-    projectId: 'iot-app-576f0',
-    authDomain: 'iot-app-576f0.firebaseapp.com',
-    databaseURL: 'https://iot-app-576f0-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'iot-app-576f0.appspot.com',
-    measurementId: 'G-HERCTQGJ37',
+    apiKey: 'AIzaSyCOS1niAaPK6pREkiho5gAY_GEqG1rTe-g',
+    appId: '1:1080975283421:web:943621d64b1f2272e8f734',
+    messagingSenderId: '1080975283421',
+    projectId: 'pinglog-beta',
+    authDomain: 'pinglog-beta.firebaseapp.com',
+    storageBucket: 'pinglog-beta.appspot.com',
+    measurementId: 'G-3YR5C2P3V8',
   );
+
 }

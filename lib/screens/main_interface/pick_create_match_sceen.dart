@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/screens/clb_admin/add_match_page.dart';
 import 'package:test_project/screens/tounament/pick_cham_screen.dart';
 
 import '../../widgets/components/consts/title_text.dart';
 import '../single_match/match_screen.dart';
 
-
+// ignore: must_be_immutable
 class PickCreateMatchScreen extends StatefulWidget {
-  const PickCreateMatchScreen({super.key});
+  PickCreateMatchScreen({super.key, required this.uid});
+
+  String uid;
 
   @override
   State<PickCreateMatchScreen> createState() => _PickCreateMatchScreenState();
@@ -18,7 +21,15 @@ class _PickCreateMatchScreenState extends State<PickCreateMatchScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Center(child: Text('Tạo Trận Đấu', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black, decoration: TextDecoration.none),)),
+        title: const Center(
+            child: Text(
+          'Tạo Trận Đấu',
+          style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              decoration: TextDecoration.none),
+        )),
         // backgroundColor: Colors.green,
       ),
       body: CustomScrollView(
@@ -27,7 +38,9 @@ class _PickCreateMatchScreenState extends State<PickCreateMatchScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
@@ -35,10 +48,13 @@ class _PickCreateMatchScreenState extends State<PickCreateMatchScreen> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              Future.delayed(Duration(milliseconds:3000));
+                              Future.delayed(
+                                  const Duration(milliseconds: 3000));
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => MatchScreen()),
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        MatchScreen(uid: widget.uid)),
                               );
                             },
                             style: ElevatedButton.styleFrom(
@@ -46,15 +62,22 @@ class _PickCreateMatchScreenState extends State<PickCreateMatchScreen> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              padding: EdgeInsets.symmetric(vertical: 18.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 18.0),
                             ),
-                            child: Text('Đấu đơn/đôi', style: TextStyle(fontSize: 20, color: Colors.black),),
+                            child: const Text(
+                              'Đấu đơn/đôi',
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.black),
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
@@ -63,26 +86,69 @@ class _PickCreateMatchScreenState extends State<PickCreateMatchScreen> {
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ControlTourScreen()
-                                    ),
-                                  );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ControlTourScreen()),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              padding: EdgeInsets.symmetric(vertical: 18.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 18.0),
                             ),
-                            child: Text('Đấu giải', style: TextStyle(fontSize: 20, color: Colors.black),),
+                            child: const Text(
+                              'Đấu giải',
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.black),
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 15,),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Future.delayed(
+                                  const Duration(milliseconds: 3000));
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AddMatchPage(uid: widget.uid)),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 18.0),
+                            ),
+                            child: const Text(
+                              'Lưu kết quả trận đấu',
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.black),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   const Padding(
                     padding: EdgeInsets.only(left: 15.0),
                     child: Row(
@@ -104,7 +170,8 @@ class _PickCreateMatchScreenState extends State<PickCreateMatchScreen> {
                             height: 100,
                             color: Colors.white54,
                             child: const Center(
-                              child: Text('23:00', style: TextStyle(fontSize: 15)),
+                              child:
+                                  Text('23:00', style: TextStyle(fontSize: 15)),
                             ),
                           ),
                         ),
@@ -123,7 +190,7 @@ class _PickCreateMatchScreenState extends State<PickCreateMatchScreen> {
                                       height: 15,
                                       color: Colors.green,
                                     ),
-                                    SizedBox(width: 5),
+                                    const SizedBox(width: 5),
                                     const Expanded(
                                       child: Text(
                                         'Chodov',
@@ -133,7 +200,7 @@ class _PickCreateMatchScreenState extends State<PickCreateMatchScreen> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Row(
                                   children: [
                                     Container(
@@ -141,7 +208,7 @@ class _PickCreateMatchScreenState extends State<PickCreateMatchScreen> {
                                       height: 15,
                                       color: Colors.green,
                                     ),
-                                    SizedBox(width: 5),
+                                    const SizedBox(width: 5),
                                     const Expanded(
                                       child: Text(
                                         'TTC Ostrava',
@@ -165,62 +232,74 @@ class _PickCreateMatchScreenState extends State<PickCreateMatchScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Expanded(
                                         child: Center(
-                                          child: Text('11', style: TextStyle(fontSize: 15)),
+                                          child: Text('11',
+                                              style: TextStyle(fontSize: 15)),
                                         ),
                                       ),
                                       Expanded(
                                         child: Center(
-                                          child: Text('11', style: TextStyle(fontSize: 15)),
+                                          child: Text('11',
+                                              style: TextStyle(fontSize: 15)),
                                         ),
                                       ),
                                       Expanded(
                                         child: Center(
-                                          child: Text('11', style: TextStyle(fontSize: 15)),
+                                          child: Text('11',
+                                              style: TextStyle(fontSize: 15)),
                                         ),
                                       ),
                                       Expanded(
                                         child: Center(
-                                          child: Text('11', style: TextStyle(fontSize: 15)),
+                                          child: Text('11',
+                                              style: TextStyle(fontSize: 15)),
                                         ),
                                       ),
                                       Expanded(
                                         child: Center(
-                                          child: Text('11', style: TextStyle(fontSize: 15)),
+                                          child: Text('11',
+                                              style: TextStyle(fontSize: 15)),
                                         ),
                                       ),
                                     ],
                                   ),
                                   SizedBox(height: 10),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Expanded(
                                         child: Center(
-                                          child: Text('1', style: TextStyle(fontSize: 15)),
+                                          child: Text('1',
+                                              style: TextStyle(fontSize: 15)),
                                         ),
                                       ),
                                       Expanded(
                                         child: Center(
-                                          child: Text('6', style: TextStyle(fontSize: 15)),
+                                          child: Text('6',
+                                              style: TextStyle(fontSize: 15)),
                                         ),
                                       ),
                                       Expanded(
                                         child: Center(
-                                          child: Text('8', style: TextStyle(fontSize: 15)),
+                                          child: Text('8',
+                                              style: TextStyle(fontSize: 15)),
                                         ),
                                       ),
                                       Expanded(
                                         child: Center(
-                                          child: Text('9', style: TextStyle(fontSize: 15)),
+                                          child: Text('9',
+                                              style: TextStyle(fontSize: 15)),
                                         ),
                                       ),
                                       Expanded(
                                         child: Center(
-                                          child: Text('1', style: TextStyle(fontSize: 15)),
+                                          child: Text('1',
+                                              style: TextStyle(fontSize: 15)),
                                         ),
                                       ),
                                     ],
@@ -234,8 +313,11 @@ class _PickCreateMatchScreenState extends State<PickCreateMatchScreen> {
                           child: Container(
                             height: 100,
                             color: Colors.white54,
-                            child: const Center(
-                              child: Icon(Icons.star),
+                            child: Center(
+                              child: IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () {},
+                              ),
                             ),
                           ),
                         ),

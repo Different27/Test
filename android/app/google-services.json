@@ -1,27 +1,79 @@
 {
   "project_info": {
-    "project_number": "47645757479",
-    "firebase_url": "https://iot-app-576f0-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "iot-app-576f0",
-    "storage_bucket": "iot-app-576f0.appspot.com"
+    "project_number": "1080975283421",
+    "project_id": "pinglog-beta",
+    "storage_bucket": "pinglog-beta.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:47645757479:android:114beb98ec73bea0b7fe02",
+        "mobilesdk_app_id": "1:1080975283421:android:d827478c73517e05e8f734",
         "android_client_info": {
-          "package_name": "com.example.test_project"
+          "package_name": "com.example.ping_log"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1080975283421-fefjhj2s3po2u7fm7kkgrm3553ff90h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyAOPvtB-BzuMIMT4Ij4ApxHjeyAyK6oRbM"
+          "current_key": "AIzaSyAPbWTZGxDEBkMtGzauCd7FZ4rKrhFfzbQ"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080975283421-fefjhj2s3po2u7fm7kkgrm3553ff90h2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1080975283421-bk78mn077redtcdoka19kskvjs81fbot.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.testProject"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080975283421:android:c5801bd0fcf194d3e8f734",
+        "android_client_info": {
+          "package_name": "com.example.test_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080975283421-fefjhj2s3po2u7fm7kkgrm3553ff90h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPbWTZGxDEBkMtGzauCd7FZ4rKrhFfzbQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080975283421-fefjhj2s3po2u7fm7kkgrm3553ff90h2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1080975283421-bk78mn077redtcdoka19kskvjs81fbot.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.testProject"
+              }
+            }
+          ]
         }
       }
     }

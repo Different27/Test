@@ -1,8 +1,11 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rive/rive.dart';
+import 'package:test_project/screens/main_interface/calendar_screen.dart';
 import 'package:test_project/screens/main_interface/pick_create_match_sceen.dart';
 import 'package:test_project/screens/main_interface/clb_screen.dart';
 import 'package:test_project/screens/main_interface/test_home_screen.dart';
@@ -15,14 +18,17 @@ import 'controllers/page_navigation_provider.dart';
 const Color bottomNavBgColor = Color(0xFF17203A);
 
 class TestBottomNavWithAnimatedIcons extends StatefulWidget {
-  const TestBottomNavWithAnimatedIcons({super.key});
+  TestBottomNavWithAnimatedIcons({super.key, required this.uid});
+
+  String uid;
 
   @override
   State<TestBottomNavWithAnimatedIcons> createState() =>
       _TestBottomNavWithAnimatedIconsState();
 }
 
-class _TestBottomNavWithAnimatedIconsState extends State<TestBottomNavWithAnimatedIcons> {
+class _TestBottomNavWithAnimatedIconsState
+    extends State<TestBottomNavWithAnimatedIcons> {
   List<SMIBool> riveIconInputs = [];
   List<StateMachineController?> controllers = [];
   late List<Widget> pages;
@@ -33,22 +39,22 @@ class _TestBottomNavWithAnimatedIconsState extends State<TestBottomNavWithAnimat
   @override
   void initState() {
     super.initState();
-    if(id_right==1){
-    pages = [
-      RankingScreen(),
-      PickCreateMatchScreen(),
-      TestHomeScreen(),
-      ClubNotificationScreen(),
-      UserScreen(),
-      // InputScore(),
-    ];
-    }else{
+    if (id_right == 1) {
       pages = [
-        UnknowClb(),
-        PickCreateMatchScreen(),
-        TestHomeScreen(),
-        UnknowClb(),
-        UserScreen(),
+        RankingScreen(uid: widget.uid),
+        PickCreateMatchScreen(uid: widget.uid),
+        const TestHomeScreen(),
+        CalendarScreen(uid: widget.uid),
+        const UserScreen(),
+        // InputScore(),
+      ];
+    } else {
+      pages = [
+        UnknowClb(uid: widget.uid),
+        PickCreateMatchScreen(uid: widget.uid),
+        const TestHomeScreen(),
+        CalendarScreen(uid: widget.uid),
+        const UserScreen(),
         // InputScore(),
       ];
     }
@@ -66,7 +72,7 @@ class _TestBottomNavWithAnimatedIconsState extends State<TestBottomNavWithAnimat
 
   void riveOnInit(Artboard artboard, {required String stateMachineName}) {
     StateMachineController? controller =
-    StateMachineController.fromArtboard(artboard, stateMachineName);
+        StateMachineController.fromArtboard(artboard, stateMachineName);
 
     artboard.addController(controller!);
     controllers.add(controller);
@@ -112,7 +118,7 @@ class _TestBottomNavWithAnimatedIconsState extends State<TestBottomNavWithAnimat
           },
           destinations: [
             NavigationDestination(
-              selectedIcon: FaIcon(
+              selectedIcon: const FaIcon(
                 FontAwesomeIcons.users,
                 color: Colors.amber,
               ),
@@ -123,7 +129,7 @@ class _TestBottomNavWithAnimatedIconsState extends State<TestBottomNavWithAnimat
               label: "Club",
             ),
             NavigationDestination(
-              selectedIcon: FaIcon(
+              selectedIcon: const FaIcon(
                 FontAwesomeIcons.trophy,
                 color: Colors.amber,
               ),
@@ -168,8 +174,8 @@ class AnimatedBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 200),
-      margin: EdgeInsets.only(bottom: 2),
+      duration: const Duration(milliseconds: 200),
+      margin: const EdgeInsets.only(bottom: 2),
       height: 3,
       width: isActive ? 20 : 0,
       decoration: const BoxDecoration(

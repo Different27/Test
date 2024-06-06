@@ -7,8 +7,11 @@ import '../../widgets/components/consts/clb_consts/clb_list_constants.dart';
 import '../../widgets/model/clb_list.dart';
 import 'creat_club_screen.dart';
 
-
 class ClubListScreen extends StatefulWidget {
+  ClubListScreen({super.key, required this.uid});
+
+  String uid;
+
   @override
   _ClubListScreenState createState() => _ClubListScreenState();
 }
@@ -44,6 +47,7 @@ class _ClubListScreenState extends State<ClubListScreen> {
           onUpdateClub: updateClub,
           club: index != null ? clubs[index] : null,
           index: index,
+          uid: widget.uid,
         ),
       ),
     );
@@ -63,9 +67,13 @@ class _ClubListScreenState extends State<ClubListScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: Text(
+        title: const Text(
           'Danh sách CLB',
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black, decoration: TextDecoration.none),
+          style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              decoration: TextDecoration.none),
         ),
       ),
       body: ListView.builder(
@@ -74,15 +82,20 @@ class _ClubListScreenState extends State<ClubListScreen> {
           final club = clubs[index];
           return Card(
             child: ListTile(
-              contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
               title: Row(
                 children: [
-                  Text(club.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  Text(
+                    club.name,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
               subtitle: Text(
                 club.location,
-                style: TextStyle(fontSize: 17),
+                style: const TextStyle(fontSize: 17),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -90,15 +103,15 @@ class _ClubListScreenState extends State<ClubListScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (id_right != 3)
-                  IconButton(
-                    icon: Icon(Icons.edit),
-                    onPressed: () => navigateToAddClub(index: index),
-                  ),
+                    IconButton(
+                      icon: const Icon(Icons.edit),
+                      onPressed: () => navigateToAddClub(index: index),
+                    ),
                   if (id_right != 3)
-                  IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () => deleteClub(index),
-                  ),
+                    IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () => deleteClub(index),
+                    ),
                 ],
               ),
               onTap: () => navigateToClubDetails(index),
@@ -108,9 +121,9 @@ class _ClubListScreenState extends State<ClubListScreen> {
       ),
       floatingActionButton: id_right != 3
           ? FloatingActionButton(
-        onPressed: navigateToAddClub,
-        child: Icon(Icons.add),
-      )
+              onPressed: navigateToAddClub,
+              child: const Icon(Icons.add),
+            )
           : null,
     );
   }
@@ -119,7 +132,7 @@ class _ClubListScreenState extends State<ClubListScreen> {
 class ClubDetailsScreen extends StatelessWidget {
   final Club club;
 
-  ClubDetailsScreen({required this.club});
+  const ClubDetailsScreen({super.key, required this.club});
 
   @override
   Widget build(BuildContext context) {
@@ -135,22 +148,29 @@ class ClubDetailsScreen extends StatelessWidget {
             Center(
               child: CircleAvatar(
                 radius: 100,
-                backgroundImage: club.imageUrl.isNotEmpty ? FileImage(File(club.imageUrl)) : null,
+                backgroundImage: club.imageUrl.isNotEmpty
+                    ? FileImage(File(club.imageUrl))
+                    : null,
                 child: club.imageUrl.isEmpty
-                    ? Icon(Icons.camera_alt, size: 80, color: Colors.grey)
+                    ? const Icon(Icons.camera_alt, size: 80, color: Colors.grey)
                     : null,
               ),
             ),
-            SizedBox(height: 20),
-            Text('Owner: ${club.owner}', style: TextStyle(fontSize: 18)),
-            SizedBox(height: 10),
-            Text('Location: ${club.location}', style: TextStyle(fontSize: 18)),
-            SizedBox(height: 10),
-            Text('Description: ${club.description}', style: TextStyle(fontSize: 18)),
-            SizedBox(height: 10),
-            Text('Founding Date: ${DateFormat('dd/MM/yyyy').format(club.foundingDate)}', style: TextStyle(fontSize: 18)),
-            SizedBox(height: 10),
-            Text('Active Years: ${club.activeYears}', style: TextStyle(fontSize: 18)),
+            const SizedBox(height: 20),
+            Text('Owner: ${club.owner}', style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 10),
+            Text('Location: ${club.location}',
+                style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 10),
+            Text('Description: ${club.description}',
+                style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 10),
+            Text(
+                'Founding Date: ${DateFormat('dd/MM/yyyy').format(club.foundingDate)}',
+                style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 10),
+            Text('Active Years: ${club.activeYears}',
+                style: const TextStyle(fontSize: 18)),
           ],
         ),
       ),

@@ -1,38 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PickTeams extends StatefulWidget {
   final Function(String) onTeamSelected;
+  final String uid;
 
-  const PickTeams({Key? key, required this.onTeamSelected}) : super(key: key);
+  const PickTeams({super.key, required this.onTeamSelected, required this.uid});
 
   @override
   _PickTeamsState createState() => _PickTeamsState();
 }
 
 class _PickTeamsState extends State<PickTeams> {
-  List<String> teams = ['Đội A', 'Đội B', 'Đội C']; // Danh sách các đội bóng
+  List<String> teams = []; // Danh sách các đội bóng
   String selectedTeam = 'Chọn ...';
+
+  @override
+  void initState() {
+    super.initState();
+    fetchTeams();
+  }
+
+  void fetchTeams() async {
+    try {
+      // Lấy dữ liệu từ Firestore
+      QuerySnapshot snapshot =
+          await FirebaseFirestore.instance.collection('players').get();
+      List<String> fetchedTeams = [];
+
+      // Duyệt qua các tài liệu và thêm tên player vào danh sách
+      for (var doc in snapshot.docs) {
+        fetchedTeams
+            .add(doc['username'].toString()); // Thêm player vào danh sách
+      }
+
+      setState(() {
+        teams = fetchedTeams;
+      });
+    } catch (e) {
+      print("Lỗi khi lấy dữ liệu: $e");
+    }
+  }
 
   void _showTeamDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Chọn đội'),
+          title: const Text('Chọn đội'),
           content: SingleChildScrollView(
             child: ListBody(
               children: [
                 // Hiển thị danh sách các đội bóng
                 ...teams.map(
-                      (team) => GestureDetector(
+                  (team) => GestureDetector(
                     onTap: () {
                       setState(() {
                         selectedTeam = team; // Chọn đội bóng từ danh sách
-                        Navigator.pop(context); // Đóng hộp thoại
-                        widget.onTeamSelected(selectedTeam); // Gọi callback để truyền dữ liệu lên widget cha
                       });
+                      Navigator.pop(context); // Đóng hộp thoại
+                      widget.onTeamSelected(
+                          selectedTeam); // Gọi callback để truyền dữ liệu lên widget cha
                     },
-                    child: Text(team,style: TextStyle(fontSize: 25),),
+                    child: Text(
+                      team,
+                      style: const TextStyle(fontSize: 25),
+                    ),
                   ),
                 ),
               ],
@@ -59,7 +92,7 @@ class _PickTeamsState extends State<PickTeams> {
         child: Center(
           child: Text(
             selectedTeam,
-            style: TextStyle(fontSize: 25),
+            style: const TextStyle(fontSize: 25),
           ),
         ),
       ),

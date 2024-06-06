@@ -3,10 +3,16 @@ import '../../widgets/match_controller/plus_score.dart';
 import '../../widgets/nav_bar.dart';
 
 class OnMatchScreen extends StatefulWidget {
+  late String matchId;
   late dynamic selectedTeam1;
   late dynamic selectedTeam2;
   late dynamic numberMatch;
-  OnMatchScreen({super.key, required this.selectedTeam1, required this.selectedTeam2, required this.numberMatch});
+  OnMatchScreen(
+      {super.key,
+      required this.matchId,
+      required this.selectedTeam1,
+      required this.selectedTeam2,
+      required this.numberMatch});
 
   @override
   State<OnMatchScreen> createState() => _OnMatchScreenState();
@@ -43,29 +49,32 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Match Result'),
-        content: Text('Trận đấu kết thúc'),
+        title: const Text('Match Result'),
+        content: const Text('Trận đấu kết thúc'),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text('OK'),
+            child: const Text('OK'),
           ),
         ],
       ),
     );
   }
 
-  void _winnerMatch(){
+  void _winnerMatch() {
     setState(() {
-      if (set_count1 == widget.numberMatch || set_count2 == widget.numberMatch){
+      if (set_count1 == widget.numberMatch ||
+          set_count2 == widget.numberMatch) {
         return _showMatchResultDialog();
       }
-      if ((set_count1 == 2 && widget.numberMatch == 3) || (set_count2 == 2 && widget.numberMatch == 3)){
+      if ((set_count1 == 2 && widget.numberMatch == 3) ||
+          (set_count2 == 2 && widget.numberMatch == 3)) {
         return _showMatchResultDialog();
       }
-      if((set_count1 == 3 && widget.numberMatch == 5) || (set_count2 == 3 && widget.numberMatch == 5)){
+      if ((set_count1 == 3 && widget.numberMatch == 5) ||
+          (set_count2 == 3 && widget.numberMatch == 5)) {
         return _showMatchResultDialog();
       }
     });
@@ -88,7 +97,7 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
       if (_count1 > 0) {
         _count1--;
       } else {
-          _count1 = 0;
+        _count1 = 0;
       }
     });
   }
@@ -109,12 +118,11 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
     setState(() {
       if (_count2 > 0) {
         _count2--;
-      }else{
-          _count2 = 0;
-        }
+      } else {
+        _count2 = 0;
+      }
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -128,25 +136,32 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
               const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start, // Đặt mainAxisAlignment thành start để hình ảnh đầu tiên ở bên trái
+                    mainAxisAlignment: MainAxisAlignment
+                        .start, // Đặt mainAxisAlignment thành start để hình ảnh đầu tiên ở bên trái
                     children: [
                       CircleAvatar(
                         radius: 25,
                         backgroundImage: AssetImage("assets/logo.jpg"),
                       ),
-                      SizedBox(width: 10,),
-                      Text('PingLog', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black, decoration: TextDecoration.none)),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text('PingLog',
+                          style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              decoration: TextDecoration.none)),
                       Spacer(),
                       CircleAvatar(
                         radius: 15,
                         backgroundImage: AssetImage("assets/logo.jpg"),
                       ),
                     ],
-                  )
-              ),
+                  )),
               Container(
                 color: Colors.pink.shade50,
-                margin: const EdgeInsets.only(top: 20,left: 12, right: 12),
+                margin: const EdgeInsets.only(top: 20, left: 12, right: 12),
                 height: 200,
                 width: MediaQuery.of(context).size.width,
                 child: Column(
@@ -156,12 +171,19 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text('Đội 1', style: TextStyle(fontSize: 25, color: Colors.black),),
+                          Text(
+                            'Đội 1',
+                            style: TextStyle(fontSize: 25, color: Colors.black),
+                          ),
                           CircleAvatar(
                             radius: 25,
                             backgroundImage: AssetImage("assets/logo.jpg"),
                           ),
-                          Text('Đội 2', style: TextStyle(fontSize: 25, color: Colors.black,)),
+                          Text('Đội 2',
+                              style: TextStyle(
+                                fontSize: 25,
+                                color: Colors.black,
+                              )),
                         ],
                       ),
                     ),
@@ -171,24 +193,34 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(15), // Đặt bán kính cong ở đây
+                            borderRadius: BorderRadius.circular(
+                                15), // Đặt bán kính cong ở đây
                           ),
                           height: 125,
                           width: 138,
                           child: Center(
-                            child: Text(widget.selectedTeam1,style: TextStyle(fontSize: 25),),
+                            child: Text(
+                              widget.selectedTeam1,
+                              style: const TextStyle(fontSize: 25),
+                            ),
                           ),
                         ),
-                        SizedBox(width: 20,),
+                        const SizedBox(
+                          width: 20,
+                        ),
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(15), // Đặt bán kính cong ở đây
+                            borderRadius: BorderRadius.circular(
+                                15), // Đặt bán kính cong ở đây
                           ),
                           height: 125,
                           width: 138,
                           child: Center(
-                            child: Text(widget.selectedTeam2,style: TextStyle(fontSize: 25),),
+                            child: Text(
+                              widget.selectedTeam2,
+                              style: const TextStyle(fontSize: 25),
+                            ),
                           ),
                         ),
                       ],
@@ -196,17 +228,20 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 70,
                     height: 60,
                     child: Card(
                       child: Center(
-                        child: Text(set_count1.toString(),
-                          style: TextStyle(
+                        child: Text(
+                          set_count1.toString(),
+                          style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                           ),
@@ -214,14 +249,17 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 130,),
-                  Container(
+                  const SizedBox(
+                    width: 130,
+                  ),
+                  SizedBox(
                     width: 70,
                     height: 60,
                     child: Card(
                       child: Center(
-                        child: Text(set_count2.toString(),
-                          style: TextStyle(
+                        child: Text(
+                          set_count2.toString(),
+                          style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                           ),
@@ -231,29 +269,31 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           _incrementCount1();
                         },
                         child: Image.asset(
                           'assets/plus.png',
-                        height: 60,
+                          height: 60,
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: 120,
                         height: 90,
                         child: Card(
                           child: Center(
                             child: Text(
                               _count1.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 50,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -262,7 +302,7 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           _decrementCount1();
                         },
                         child: Image.asset(
@@ -275,40 +315,46 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                   Container(
                     child: Column(
                       children: [
-                        Text('<Điểm Chấp>', style: TextStyle(fontSize: 20),),
+                        const Text(
+                          '<Điểm Chấp>',
+                          style: TextStyle(fontSize: 20),
+                        ),
                         Row(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(bottom: 30),
-                              child: Container(
+                              child: SizedBox(
                                 width: 50,
                                 height: 55,
                                 child: Center(
-                                  child: PlusScore(onScoreSelected: _handleScoreSelected1),
+                                  child: PlusScore(
+                                      onScoreSelected: _handleScoreSelected1),
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 40,),
+                            const SizedBox(
+                              width: 40,
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 30),
-                              child: Container(
+                              child: SizedBox(
                                 width: 50,
                                 height: 55,
                                 child: Center(
-                                    child: PlusScore(onScoreSelected: _handleScoreSelected2),
+                                  child: PlusScore(
+                                      onScoreSelected: _handleScoreSelected2),
                                 ),
                               ),
                             ),
                           ],
                         ),
-
                       ],
                     ),
                   ),
                   Column(
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           _incrementCount2();
                         },
                         child: Image.asset(
@@ -316,7 +362,7 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                           height: 60,
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: 120,
                         height: 90,
                         child: Card(
@@ -332,7 +378,7 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           _decrementCount2();
                         },
                         child: Image.asset(
@@ -344,12 +390,14 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 30,),
+              const SizedBox(
+                height: 30,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 12, right: 12),
+                    margin: const EdgeInsets.only(left: 12, right: 12),
                     height: 55,
                     width: 150,
                     decoration: BoxDecoration(
@@ -357,20 +405,24 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => TestBottomNavWithAnimatedIcons()),
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  TestBottomNavWithAnimatedIcons(
+                                      uid: 'djkvndskjnvkjsvnjs')),
                         );
                       },
                       child: const Center(
-                          child: Text('Kết thúc', style: TextStyle(fontSize: 25),
-                          )
-                      ),
+                          child: Text(
+                        'Kết thúc',
+                        style: TextStyle(fontSize: 25),
+                      )),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(right: 12),
+                    margin: const EdgeInsets.only(right: 12),
                     height: 55,
                     width: 150,
                     decoration: BoxDecoration(
@@ -378,9 +430,10 @@ class _OnMatchScreenState extends State<OnMatchScreen> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: const Center(
-                        child: Text('Chơi tiếp', style: TextStyle(fontSize: 25),
-                        )
-                    ),
+                        child: Text(
+                      'Chơi tiếp',
+                      style: TextStyle(fontSize: 25),
+                    )),
                   ),
                 ],
               ),
